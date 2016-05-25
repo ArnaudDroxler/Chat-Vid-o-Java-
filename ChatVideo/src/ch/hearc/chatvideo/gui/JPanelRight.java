@@ -1,3 +1,4 @@
+
 package ch.hearc.chatvideo.gui;
 
 import java.awt.FlowLayout;
@@ -66,6 +67,5 @@ public class JPanelRight extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
 
 	}
