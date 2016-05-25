@@ -6,7 +6,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
-import ch.hearc.chatvideo.pc.SharedJtextArea;
+import ch.hearc.chatvideo.pc.Chat_I;
 
 public class JFrameChat extends JFrame
 	{
@@ -15,9 +15,9 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(SharedJtextArea shared)
+	public JFrameChat(Chat_I remote)
 		{
-		this.shared = shared;
+		this.shared = remote;
 		geometry();
 		control();
 		appearance();
@@ -45,7 +45,6 @@ public class JFrameChat extends JFrame
 		bottom = new JPanelBottom();
 		right = new JPanelRight();
 
-		JPanelDecorator pDCenter = new JPanelDecorator(shared, 4);
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
 
@@ -58,7 +57,7 @@ public class JFrameChat extends JFrame
 			// borderLayout.setVgap(20);
 			}
 
-		add(pDCenter, BorderLayout.CENTER);
+		add(shared, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
 		add(pDBottom, BorderLayout.SOUTH);
 
@@ -84,5 +83,5 @@ public class JFrameChat extends JFrame
 
 	private JPanelBottom bottom;
 	private JPanelRight right;
-	private SharedJtextArea shared;
+	private Chat_I shared;
 	}

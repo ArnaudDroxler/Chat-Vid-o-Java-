@@ -1,7 +1,7 @@
 
 package ch.hearc.chatvideo.pc;
 
-public class UsePcChat
+public class UsePcChat2
 	{
 
 	/*------------------------------------------------------------------*\
@@ -10,8 +10,12 @@ public class UsePcChat
 
 	public static void main(String[] args)
 		{
-		//On veut des arguments... on verra plus tard
+		main();
+		}
 
+	public static void main()
+		{
+		new PcChat2().run();
 		}
 
 	/*------------------------------------------------------------------*\
