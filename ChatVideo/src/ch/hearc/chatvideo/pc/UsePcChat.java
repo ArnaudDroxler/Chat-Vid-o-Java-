@@ -1,9 +1,7 @@
 
-package ch.hearc.chatvideo.gui;
+package ch.hearc.chatvideo.pc;
 
-import ch.hearc.chatvideo.pc.SharedJtextArea;
-
-public class UseFrameChat
+public class UsePcChat
 	{
 
 	/*------------------------------------------------------------------*\
@@ -12,17 +10,11 @@ public class UseFrameChat
 
 	public static void main(String[] args)
 		{
-		main();
-		}
+		//On veut des arguments... on verra plus tard
 
-	public static void main()
-		{
-		SharedJtextArea text = new SharedJtextArea();
-		new JFrameChat(text);
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
-
 	}

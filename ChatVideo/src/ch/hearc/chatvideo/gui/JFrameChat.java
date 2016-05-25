@@ -4,10 +4,9 @@ package ch.hearc.chatvideo.gui;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
-
+import ch.hearc.chatvideo.pc.SharedJtextArea;
 
 public class JFrameChat extends JFrame
 	{
@@ -16,8 +15,9 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat()
+	public JFrameChat(SharedJtextArea shared)
 		{
+		this.shared = shared;
 		geometry();
 		control();
 		appearance();
@@ -44,12 +44,9 @@ public class JFrameChat extends JFrame
 		// JComponent : Instanciation
 		bottom = new JPanelBottom();
 		right = new JPanelRight();
-		top = new JPanelTop();
-		center = new JTextField();
 
-		JPanelDecorator pDCenter = new JPanelDecorator(center, 4);
+		JPanelDecorator pDCenter = new JPanelDecorator(shared, 4);
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
-		JPanelDecorator pDTop = new JPanelDecorator(top, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
 
 		// Layout : Specification
@@ -63,7 +60,6 @@ public class JFrameChat extends JFrame
 
 		add(pDCenter, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
-		add(pDTop, BorderLayout.NORTH);
 		add(pDBottom, BorderLayout.SOUTH);
 
 		}
@@ -88,7 +84,5 @@ public class JFrameChat extends JFrame
 
 	private JPanelBottom bottom;
 	private JPanelRight right;
-	private JPanelTop top;
-	private JTextField center;
-
+	private SharedJtextArea shared;
 	}

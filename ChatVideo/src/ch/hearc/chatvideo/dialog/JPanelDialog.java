@@ -1,5 +1,8 @@
 
-package ch.hearc.chatvideo.gui;
+package ch.hearc.chatvideo.dialog;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -7,16 +10,19 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class JPanelTop extends Box
+import ch.hearc.chatvideo.pc.PcChat;
+
+public class JPanelDialog extends Box
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelTop()
+	public JPanelDialog(PcChat chat)
 		{
 		super(BoxLayout.X_AXIS);
+		this.chat = chat;
 		geometry();
 		control();
 		appearance();
@@ -43,22 +49,31 @@ public class JPanelTop extends Box
 		// JComponent : Instanciation
 		labelIp = new JLabel("IP : ");
 		inputIp = new JTextField();
-		labelPort = new JLabel("Port : ");
-		inputPort = new JTextField("1099");
+		labelPseudo = new JLabel("Pseudo : ");
+		inputPseudo = new JTextField();
 		connect = new JButton("Connect");
 
 		// JComponent : add
 		add(labelIp);
 		add(inputIp);
 		add(Box.createHorizontalStrut(5));
-		add(labelPort);
-		add(inputPort);
+		add(labelPseudo);
+		add(inputPseudo);
 		add(connect);
 		}
 
 	private void control()
 		{
+		connect.addActionListener(new ActionListener()
+			{
 
+			@Override
+			public void actionPerformed(ActionEvent e)
+				{
+				chat.clientSide(inputIp.getText(), inputPseudo.getText());
+
+				}
+			});
 		}
 
 	private void appearance()
@@ -72,8 +87,9 @@ public class JPanelTop extends Box
 	// Tools
 
 	private JLabel labelIp;
-	private JLabel labelPort;
+	private JLabel labelPseudo;
 	private JTextField inputIp;
-	private JTextField inputPort;
+	private JTextField inputPseudo;
 	private JButton connect;
+	PcChat chat;
 	}
