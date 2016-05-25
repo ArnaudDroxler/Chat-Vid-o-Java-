@@ -3,7 +3,9 @@ package ch.hearc.chatvideo.gui;
 
 import java.awt.FlowLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class JPanelTop extends JPanel
 	{
@@ -67,5 +69,8 @@ public class JPanelTop extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
+	JLabel labelIp;
+	JLabel labelPort;
+	JTextField inputIp;
+	JTextField inputPort;
 	}

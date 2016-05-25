@@ -1,23 +1,23 @@
-package ch.hearc.chatvideo.gui;
 
+package ch.hearc.chatvideo.gui.tools;
+
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Label;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
-public class JPanelBottom extends Box
+public class JPanelDecorator extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelBottom()
+	public JPanelDecorator(JComponent jcomponentcentre, int marge)
 		{
-		super(BoxLayout.X_AXIS);
+		this.jcomponentcentre = jcomponentcentre;
+		this.marge = marge;
 
 		geometry();
 		control();
@@ -42,18 +42,31 @@ public class JPanelBottom extends Box
 
 	private void geometry()
 		{
-		// JComponent : Instanciation
-		labelPseudo = new Label("Pseudo :");
-		inputPseudo = new JTextField();
-		inputMessage = new JTextField();
-		buttonSend = new JButton("Send");
+		// Layout : Specification
+			{
+			BorderLayout layout = new BorderLayout();
+			setLayout(layout);
+			}
 
 		// JComponent : add
-		add(labelPseudo);
-		add(inputPseudo);
-		add(inputMessage);
-		add(buttonSend);
+		add(jcomponentcentre, BorderLayout.CENTER);
+		add(createJPanelMarge(), BorderLayout.NORTH);
+		add(createJPanelMarge(), BorderLayout.SOUTH);
+		add(createJPanelMarge(), BorderLayout.EAST);
+		add(createJPanelMarge(), BorderLayout.WEST);
+		}
 
+	private JPanel createJPanelMarge()
+		{
+		JPanel panel = new JPanel();
+		Dimension dim = new Dimension(marge, marge);
+		panel.setPreferredSize(dim);
+		//debug
+			{
+			//panel.setBackground(Color.BLACK);
+			}
+
+		return panel;
 		}
 
 	private void control()
@@ -63,11 +76,6 @@ public class JPanelBottom extends Box
 
 	private void appearance()
 		{
-		inputPseudo.setPreferredSize(new Dimension(100, 26));
-		inputPseudo.setMaximumSize(new Dimension(100, 26));
-		inputPseudo.setMinimumSize(new Dimension(100, 26));
-
-		//Debug
 		}
 
 	/*------------------------------------------------------------------*\
@@ -76,9 +84,8 @@ public class JPanelBottom extends Box
 
 	// Tools
 
-	private Label labelPseudo;
-	private JTextField inputPseudo;
-	private JTextField inputMessage;
-	private JButton buttonSend;
+	//input
+	private JComponent jcomponentcentre;
+	private int marge;
 
 	}
