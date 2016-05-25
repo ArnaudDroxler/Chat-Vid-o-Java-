@@ -1,6 +1,7 @@
 
 package ch.hearc.chatvideo.testvideo;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -122,7 +123,7 @@ public class JPanelTestVideo extends JPanel
 
 	private void appearance()
 		{
-		// rien
+		setPreferredSize(new Dimension(500, 500));
 		}
 
 	/*------------------------------------------------------------------*\

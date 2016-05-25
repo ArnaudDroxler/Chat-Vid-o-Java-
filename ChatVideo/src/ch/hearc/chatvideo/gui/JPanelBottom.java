@@ -51,7 +51,9 @@ public class JPanelBottom extends Box
 		// JComponent : add
 		add(labelPseudo);
 		add(inputPseudo);
+		add(Box.createHorizontalStrut(5));
 		add(inputMessage);
+		add(Box.createHorizontalStrut(5));
 		add(buttonSend);
 
 		}

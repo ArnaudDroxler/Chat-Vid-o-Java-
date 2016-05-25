@@ -1,11 +1,13 @@
 
 package ch.hearc.chatvideo.gui;
 
-import java.awt.FlowLayout;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 
-import javax.swing.JPanel;
+import ch.hearc.chatvideo.testvideo.JPanelTestVideo;
 
-public class JPanelRight extends JPanel
+public class JPanelRight extends Box
 	{
 
 	/*------------------------------------------------------------------*\
@@ -14,6 +16,7 @@ public class JPanelRight extends JPanel
 
 	public JPanelRight()
 		{
+		super(BoxLayout.Y_AXIS);
 		geometry();
 		control();
 		appearance();
@@ -39,17 +42,15 @@ public class JPanelRight extends JPanel
 		{
 		// JComponent : Instanciation
 
-		// Layout : Specification
-			{
-			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
-			setLayout(flowlayout);
-
-			// flowlayout.setHgap(20);
-			// flowlayout.setVgap(20);
-			}
+		buttonVideo = new JButton("Video");
+		videoCLient = new JPanelTestVideo();
+		//videoServeur = new JPanelTestVideo();
 
 		// JComponent : add
 
+		add(videoCLient);
+		add(buttonVideo);
+		//add(videoServeur);
 		}
 
 	private void control()
@@ -67,5 +68,7 @@ public class JPanelRight extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
+	private JButton buttonVideo;
+	private JPanelTestVideo videoCLient;
+	private JPanelTestVideo videoServeur;
 	}

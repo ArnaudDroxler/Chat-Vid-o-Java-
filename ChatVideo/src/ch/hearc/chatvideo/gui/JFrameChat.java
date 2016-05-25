@@ -47,7 +47,7 @@ public class JFrameChat extends JFrame
 		top = new JPanelTop();
 		center = new JTextField();
 
-
+		JPanelDecorator pDCenter = new JPanelDecorator(center, 4);
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDTop = new JPanelDecorator(top, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
@@ -61,7 +61,7 @@ public class JFrameChat extends JFrame
 			// borderLayout.setVgap(20);
 			}
 
-		add(center, BorderLayout.CENTER);
+		add(pDCenter, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
 		add(pDTop, BorderLayout.NORTH);
 		add(pDBottom, BorderLayout.SOUTH);
