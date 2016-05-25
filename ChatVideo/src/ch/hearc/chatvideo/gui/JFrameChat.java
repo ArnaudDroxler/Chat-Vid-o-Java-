@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
 
+
 public class JFrameChat extends JFrame
 	{
 
@@ -46,9 +47,11 @@ public class JFrameChat extends JFrame
 		top = new JPanelTop();
 		center = new JTextField();
 
+
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDTop = new JPanelDecorator(top, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
+
 		// Layout : Specification
 			{
 			BorderLayout borderLayout = new BorderLayout();
@@ -62,6 +65,7 @@ public class JFrameChat extends JFrame
 		add(pDRight, BorderLayout.EAST);
 		add(pDTop, BorderLayout.NORTH);
 		add(pDBottom, BorderLayout.SOUTH);
+
 		}
 
 	private void control()
@@ -81,8 +85,10 @@ public class JFrameChat extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	JPanelBottom bottom;
-	JPanelRight right;
-	JPanelTop top;
-	JTextField center;
+
+	private JPanelBottom bottom;
+	private JPanelRight right;
+	private JPanelTop top;
+	private JTextField center;
+
 	}
