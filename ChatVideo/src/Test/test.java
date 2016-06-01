@@ -1,5 +1,5 @@
 
-package Test;
+package test;
 
 import javax.swing.JFrame;
 
@@ -9,7 +9,6 @@ import com.github.sarxos.webcam.WebcamResolution;
 
 public class test
 	{
-
 
 	public static void main(String[] args) throws InterruptedException
 		{

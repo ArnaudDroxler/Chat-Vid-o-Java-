@@ -42,7 +42,7 @@ public class JFrameChat extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		bottom = new JPanelBottom();
+		bottom = new JPanelBottom(shared);
 		right = new JPanelRight();
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
@@ -60,7 +60,6 @@ public class JFrameChat extends JFrame
 		add(shared, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
 		add(pDBottom, BorderLayout.SOUTH);
-
 		}
 
 	private void control()

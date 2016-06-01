@@ -71,7 +71,6 @@ public class JPanelDialog extends Box
 			public void actionPerformed(ActionEvent e)
 				{
 				chat.clientSide(inputIp.getText(), inputPseudo.getText());
-
 				}
 			});
 		}
