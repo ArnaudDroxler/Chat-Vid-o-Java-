@@ -1,8 +1,5 @@
 package ch.hearc.chatvideo.gui;
 
-import java.awt.Dimension;
-import java.awt.Label;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -43,14 +40,10 @@ public class JPanelBottom extends Box
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		labelPseudo = new Label("Pseudo :");
-		inputPseudo = new JTextField();
 		inputMessage = new JTextField();
 		buttonSend = new JButton("Send");
 
 		// JComponent : add
-		add(labelPseudo);
-		add(inputPseudo);
 		add(Box.createHorizontalStrut(5));
 		add(inputMessage);
 		add(Box.createHorizontalStrut(5));
@@ -65,10 +58,6 @@ public class JPanelBottom extends Box
 
 	private void appearance()
 		{
-		inputPseudo.setPreferredSize(new Dimension(100, 26));
-		inputPseudo.setMaximumSize(new Dimension(100, 26));
-		inputPseudo.setMinimumSize(new Dimension(100, 26));
-
 		//Debug
 		}
 
@@ -78,8 +67,6 @@ public class JPanelBottom extends Box
 
 	// Tools
 
-	private Label labelPseudo;
-	private JTextField inputPseudo;
 	private JTextField inputMessage;
 	private JButton buttonSend;
 

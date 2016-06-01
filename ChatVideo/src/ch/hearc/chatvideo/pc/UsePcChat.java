@@ -10,7 +10,7 @@ public class UsePcChat
 
 	public static void main(String[] args)
 		{
-		//On veut des arguments... on verra plus tard
+		new pcCh
 
 		}
 
