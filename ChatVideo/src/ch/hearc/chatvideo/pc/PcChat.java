@@ -42,19 +42,17 @@ public abstract class PcChat implements Runnable
 
 	public void clientSide(String ip, String pseudo)
 		{
-		Chat_I remote = connect(ip);
-		work(remote);
+		work();
 		}
 
-	protected void work(Chat_I remote)
+	protected void work()
 		{
-		new JFrameChat(remote);
+		new JFrameChat(shared);
 		}
 
-	protected Chat_I connect(String ip)
+	protected SharedJtextArea connect(String ip)
 		{
 		return shared;
-
 		}
 
 	protected void serverSide()
