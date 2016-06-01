@@ -1,9 +1,10 @@
 
 package ch.hearc.chatvideo.pc;
 
+import java.net.InetAddress;
+
 import ch.hearc.chatvideo.dialog.JFrameDialog;
 import ch.hearc.chatvideo.pc.chat.Chat_I;
-import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
 import ch.hearc.chatvideo.pc.video.VideoTools_I;
 
 public abstract class PcChat implements Runnable
@@ -39,9 +40,9 @@ public abstract class PcChat implements Runnable
 
 	public abstract void clientSide(String ip, String pseudo);
 
-	protected abstract Chat_I connectChat(String ip);
+	protected abstract Chat_I connectChat(InetAddress ip);
 
-	protected abstract VideoTools_I connectVideo(String ip);
+	protected abstract VideoTools_I connectVideo(InetAddress ip);
 
 	protected abstract void serverSide();
 
@@ -50,6 +51,5 @@ public abstract class PcChat implements Runnable
 	\*------------------------------------------------------------------*/
 
 	//INPUT
-	protected SharedJtextArea localChat;
 
 	}

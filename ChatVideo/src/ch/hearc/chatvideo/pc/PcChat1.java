@@ -1,6 +1,8 @@
 
 package ch.hearc.chatvideo.pc;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
 import ch.hearc.chatvideo.gui.JFrameChat;
@@ -20,16 +22,27 @@ public class PcChat1 extends PcChat
 	\*------------------------------------------------------------------*/
 
 	@Override
-	public void clientSide(String ip, String pseudo)
+	public void clientSide(String _ip, String pseudo)
 		{
-		Chat_I remoteChat = connectChat(ip);
-		VideoTools_I remoteVideo = connectVideo(ip);
+		InetAddress ip;
+		try
+			{
+			ip = InetAddress.getByName(_ip);
+			Chat_I remoteChat = connectChat(ip);
+			VideoTools_I remoteVideo = connectVideo(ip);
+			new JFrameChat(remoteChat, localChat, pseudo);
+			}
+		catch (UnknownHostException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
 
-		new JFrameChat(remoteChat, localChat, pseudo);
+
 		}
 
 	@Override
-	protected VideoTools_I connectVideo(String ip)
+	protected VideoTools_I connectVideo(InetAddress ip)
 		{
 		VideoTools_I remoteVideo;
 
@@ -49,12 +62,12 @@ public class PcChat1 extends PcChat
 		}
 
 	@Override
-	protected Chat_I connectChat(String ip)
+	protected Chat_I connectChat(InetAddress ip)
 		{
 		Chat_I remoteChat;
 		try
 			{
-			RmiURL rmiURL = new RmiURL(PcChat2.RMI_ID_CHAT, RMI_PORT);
+			RmiURL rmiURL = new RmiURL(PcChat2.RMI_ID_CHAT,ip, RMI_PORT);
 			int delayms = 1000;
 			int nbTentatives = 1000;
 			remoteChat = (Chat_I)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
