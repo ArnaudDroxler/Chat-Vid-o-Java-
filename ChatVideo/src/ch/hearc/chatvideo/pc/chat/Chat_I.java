@@ -1,5 +1,5 @@
 
-package ch.hearc.chatvideo.pc;
+package ch.hearc.chatvideo.pc.chat;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

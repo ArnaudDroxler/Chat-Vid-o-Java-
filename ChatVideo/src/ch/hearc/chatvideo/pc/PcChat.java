@@ -2,6 +2,9 @@
 package ch.hearc.chatvideo.pc;
 
 import ch.hearc.chatvideo.dialog.JFrameDialog;
+import ch.hearc.chatvideo.pc.chat.Chat_I;
+import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
+import ch.hearc.chatvideo.pc.video.VideoTools_I;
 
 import com.bilat.tools.reseau.rmi.RmiURL;
 
@@ -38,7 +41,9 @@ public abstract class PcChat implements Runnable
 
 	public abstract void clientSide(String ip, String pseudo);
 
-	abstract protected Chat_I connect(String ip);
+	protected abstract Chat_I connectChat(String ip);
+
+	protected abstract VideoTools_I connectVideo(String ip);
 
 	protected abstract void serverSide();
 

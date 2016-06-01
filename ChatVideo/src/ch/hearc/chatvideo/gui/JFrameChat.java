@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
-import ch.hearc.chatvideo.pc.Chat_I;
-import ch.hearc.chatvideo.pc.SharedJtextArea;
+import ch.hearc.chatvideo.pc.chat.Chat_I;
+import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
 
 public class JFrameChat extends JFrame
 	{

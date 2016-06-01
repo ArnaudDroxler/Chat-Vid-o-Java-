@@ -1,7 +1,7 @@
 
 package ch.hearc.chatvideo.gui;
 
-import ch.hearc.chatvideo.pc.SharedJtextArea;
+import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
 
 public class UseFrameChat
 	{
