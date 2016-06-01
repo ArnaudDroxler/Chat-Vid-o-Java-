@@ -11,8 +11,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import ch.hearc.chatvideo.pc.SharedJtextArea;
-
 public class JPanelBottom extends Box
 	{
 
@@ -20,11 +18,11 @@ public class JPanelBottom extends Box
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelBottom(SharedJtextArea _shared)
+	public JPanelBottom(JFrameChat jFrameChat)
 		{
 		super(BoxLayout.X_AXIS);
-		shared = _shared;
 
+		parent = jFrameChat;
 		geometry();
 		control();
 		appearance();
@@ -73,7 +71,7 @@ public class JPanelBottom extends Box
 			public void actionPerformed(ActionEvent e)
 				{
 				String s = inputMessage.getText();
-				shared.append(s);
+				parent.sendMessage(s);
 				inputMessage.setText("");
 				}
 			});
@@ -98,5 +96,5 @@ public class JPanelBottom extends Box
 	private JTextField inputPseudo;
 	private JTextField inputMessage;
 	private JButton buttonSend;
-	private SharedJtextArea shared;
+	private JFrameChat parent;
 	}

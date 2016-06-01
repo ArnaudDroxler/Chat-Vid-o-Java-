@@ -3,6 +3,8 @@ package ch.hearc.chatvideo.pc;
 
 import java.rmi.RemoteException;
 
+import ch.hearc.chatvideo.gui.JFrameChat;
+
 import com.bilat.tools.reseau.rmi.RmiTools;
 import com.bilat.tools.reseau.rmi.RmiURL;
 
@@ -10,24 +12,27 @@ public class PcChat2 extends PcChat
 	{
 
 	/*------------------------------------------------------------------*\
-	|*							Constructeurs							*|
-	\*------------------------------------------------------------------*/
-
-	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected SharedJtextArea connect(String ip)
+	public void clientSide(String ip, String pseudo)
 		{
-		SharedJtextArea textarea;
+		Chat_I remoteChat = connect(ip);
+		new JFrameChat(remoteChat, localChat);
+		}
+
+	@Override
+	protected Chat_I connect(String ip)
+		{
+		Chat_I remoteChat;
 		try
 			{
 			RmiURL rmiURL = new RmiURL(PcChat1.RMI_ID, RMI_PORT);
 			int delayms = 1000;
 			int nbTentatives = 1000;
-			textarea = (SharedJtextArea)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
-			return textarea;
+			remoteChat = (Chat_I)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
+			return remoteChat;
 			}
 		catch (RemoteException e)
 			{
@@ -40,10 +45,10 @@ public class PcChat2 extends PcChat
 	@Override
 	protected void serverSide()
 		{
-		shared = new SharedJtextArea();
+		localChat = new SharedJtextArea();
 		try
 			{
-			RmiTools.shareObject(shared, rmiUrl);
+			RmiTools.shareObject(localChat, rmiUrl);
 			}
 		catch (RemoteException e)
 			{
@@ -56,7 +61,7 @@ public class PcChat2 extends PcChat
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
-	public final RmiURL rmiUrl = new RmiURL(RMI_ID, RMI_PORT);
+	private final RmiURL rmiUrl = new RmiURL(RMI_ID, RMI_PORT);
 
 	/*------------------------------*\
 	|*			  Static			*|
@@ -64,5 +69,5 @@ public class PcChat2 extends PcChat
 
 	public static final int RMI_PORT = RmiTools.PORT_RMI_DEFAUT;
 	public static final String RMI_ID = PcChat2.class.getName() + "MAXIME";
-
+	private SharedJtextArea localChat;
 	}

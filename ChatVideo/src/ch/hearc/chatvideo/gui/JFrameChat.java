@@ -2,10 +2,13 @@
 package ch.hearc.chatvideo.gui;
 
 import java.awt.BorderLayout;
+import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
+import ch.hearc.chatvideo.pc.Chat_I;
 import ch.hearc.chatvideo.pc.SharedJtextArea;
 
 public class JFrameChat extends JFrame
@@ -15,9 +18,11 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(SharedJtextArea remote)
+	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat)
 		{
-		this.shared = remote;
+		this.remoteChat = _remoteChat;
+		this.localChat = _localChat;
+
 		geometry();
 		control();
 		appearance();
@@ -26,6 +31,21 @@ public class JFrameChat extends JFrame
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void sendMessage(String s)
+		{
+		try
+			{
+			remoteChat.send(s);
+			localChat.append(s);
+			}
+		catch (RemoteException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -42,7 +62,8 @@ public class JFrameChat extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		bottom = new JPanelBottom(shared);
+		//On instancier ici le textarea
+		bottom = new JPanelBottom(this);
 		right = new JPanelRight();
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
@@ -57,7 +78,7 @@ public class JFrameChat extends JFrame
 			// borderLayout.setVgap(20);
 			}
 
-		add(shared, BorderLayout.CENTER);
+		add(localChat, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
 		add(pDBottom, BorderLayout.SOUTH);
 		}
@@ -79,8 +100,9 @@ public class JFrameChat extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
+	private JTextArea localChat;
+	private JPanelCenter center;
 	private JPanelBottom bottom;
 	private JPanelRight right;
-	private SharedJtextArea shared;
+	private Chat_I remoteChat;
 	}

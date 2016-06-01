@@ -18,7 +18,6 @@ public class UseFrameChat
 	public static void main()
 		{
 		SharedJtextArea text = new SharedJtextArea();
-		new JFrameChat(text);
 		}
 
 	/*------------------------------------------------------------------*\

@@ -1,28 +1,32 @@
 
-package ch.hearc.chatvideo.pc;
+package ch.hearc.chatvideo.gui;
 
-import ch.hearc.chatvideo.dialog.JFrameDialog;
+import java.awt.FlowLayout;
 
-import com.bilat.tools.reseau.rmi.RmiURL;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-public abstract class PcChat implements Runnable
+import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
+import ch.hearc.chatvideo.pc.Chat_I;
+
+public class JPanelCenter extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	public JPanelCenter(Chat_I _shared, JTextArea _textArea)
+		{
+		textArea = _textArea;
+		geometry();
+		control();
+		appearance();
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	@Override
-	public void run()
-		{
-		serverSide();
-		new JFrameDialog(this);
-
-		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -36,18 +40,38 @@ public abstract class PcChat implements Runnable
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
-	public abstract void clientSide(String ip, String pseudo);
+	private void geometry()
+		{
+		// JComponent : Instanciation
+		JPanelDecorator pDTextArea = new JPanelDecorator(textArea, 4);
+		// Layout : Specification
+			{
+			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
+			setLayout(flowlayout);
 
-	abstract protected Chat_I connect(String ip);
+			// flowlayout.setHgap(20);
+			// flowlayout.setVgap(20);
+			}
 
-	protected abstract void serverSide();
+		// JComponent : add
+		add(pDTextArea);
+		}
+
+	private void control()
+		{
+		// rien
+		}
+
+	private void appearance()
+		{
+		// rien
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
-	//INPUT
-	protected SharedJtextArea localChat;
-	private RmiURL rmiUrl;
+	//Input
+	private JTextArea textArea;
 
 	}

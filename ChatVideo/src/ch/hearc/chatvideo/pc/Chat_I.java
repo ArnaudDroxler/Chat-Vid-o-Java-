@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
 public interface Chat_I extends Remote
 	{
 
-	public void append(String s) throws RemoteException;
+	public void send(String s) throws RemoteException;
 	}
