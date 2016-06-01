@@ -18,10 +18,11 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat)
+	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat, String _pseudo)
 		{
 		this.remoteChat = _remoteChat;
 		this.localChat = _localChat;
+		this.pseudo = _pseudo;
 
 		geometry();
 		control();
@@ -34,6 +35,7 @@ public class JFrameChat extends JFrame
 
 	public void sendMessage(String s)
 		{
+		s = pseudo + " : " + s + "\n";
 		try
 			{
 			remoteChat.send(s);
@@ -68,6 +70,7 @@ public class JFrameChat extends JFrame
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
+		JPanelDecorator pDCenter = new JPanelDecorator(localChat, 4);
 
 		// Layout : Specification
 			{
@@ -78,7 +81,7 @@ public class JFrameChat extends JFrame
 			// borderLayout.setVgap(20);
 			}
 
-		add(localChat, BorderLayout.CENTER);
+		add(pDCenter, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
 		add(pDBottom, BorderLayout.SOUTH);
 		}
@@ -86,6 +89,7 @@ public class JFrameChat extends JFrame
 	private void control()
 		{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		}
 
 	private void appearance()
@@ -101,8 +105,8 @@ public class JFrameChat extends JFrame
 
 	// Tools
 	private JTextArea localChat;
-	private JPanelCenter center;
 	private JPanelBottom bottom;
 	private JPanelRight right;
 	private Chat_I remoteChat;
+	private String pseudo;
 	}

@@ -6,8 +6,6 @@ import ch.hearc.chatvideo.pc.chat.Chat_I;
 import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
 import ch.hearc.chatvideo.pc.video.VideoTools_I;
 
-import com.bilat.tools.reseau.rmi.RmiURL;
-
 public abstract class PcChat implements Runnable
 	{
 
@@ -53,6 +51,5 @@ public abstract class PcChat implements Runnable
 
 	//INPUT
 	protected SharedJtextArea localChat;
-	private RmiURL rmiUrl;
 
 	}

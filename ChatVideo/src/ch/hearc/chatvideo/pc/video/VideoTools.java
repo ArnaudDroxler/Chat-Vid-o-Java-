@@ -13,13 +13,14 @@ public class VideoTools implements VideoTools_I
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public VideoTools()
+	public static VideoTools getInstance()
 		{
 		if (!webcam.isOpen())
 			{
 			webcam.setViewSize(WebcamResolution.VGA.getSize());
 			webcam.open();
 			}
+		return instance;
 		}
 
 	/*------------------------------*\
@@ -36,4 +37,5 @@ public class VideoTools implements VideoTools_I
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 	private static final Webcam webcam = Webcam.getDefault();
+	private static final VideoTools instance = new VideoTools();
 	}

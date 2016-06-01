@@ -1,6 +1,7 @@
 
 package ch.hearc.chatvideo.dialog;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,10 +20,11 @@ public class JPanelDialog extends Box
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelDialog(PcChat chat)
+	public JPanelDialog(PcChat chat, JFrameDialog parent)
 		{
-		super(BoxLayout.X_AXIS);
+		super(BoxLayout.Y_AXIS);
 		this.chat = chat;
+		this.parent = parent;
 		geometry();
 		control();
 		appearance();
@@ -54,12 +56,21 @@ public class JPanelDialog extends Box
 		connect = new JButton("Connect");
 
 		// JComponent : add
-		add(labelIp);
-		add(inputIp);
-		add(Box.createHorizontalStrut(5));
-		add(labelPseudo);
-		add(inputPseudo);
+		Box boxIp = Box.createHorizontalBox();
+		boxIp.add(labelIp);
+		boxIp.add(inputIp);
+
+		Box boxPseudo = Box.createHorizontalBox();
+		boxPseudo.add(labelPseudo);
+		boxPseudo.add(inputPseudo);
+
+		add(boxIp);
+		add(Box.createVerticalStrut(4));
+		add(boxPseudo);
+		add(Box.createVerticalStrut(4));
 		add(connect);
+
+
 		}
 
 	private void control()
@@ -71,12 +82,22 @@ public class JPanelDialog extends Box
 			public void actionPerformed(ActionEvent e)
 				{
 				chat.clientSide(inputIp.getText(), inputPseudo.getText());
+				parent.setVisible(false);
 				}
 			});
 		}
 
 	private void appearance()
 		{
+		inputPseudo.setPreferredSize(new Dimension(100, 26));
+		inputPseudo.setMaximumSize(new Dimension(100, 26));
+		inputPseudo.setMinimumSize(new Dimension(100, 26));
+
+		inputIp.setPreferredSize(new Dimension(100, 26));
+		inputIp.setMaximumSize(new Dimension(100, 26));
+		inputIp.setMinimumSize(new Dimension(100, 26));
+
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -90,5 +111,6 @@ public class JPanelDialog extends Box
 	private JTextField inputIp;
 	private JTextField inputPseudo;
 	private JButton connect;
-	PcChat chat;
+	private PcChat chat;
+	private JFrameDialog parent;
 	}

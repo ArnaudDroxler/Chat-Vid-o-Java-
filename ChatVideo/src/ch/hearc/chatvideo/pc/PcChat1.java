@@ -24,7 +24,8 @@ public class PcChat1 extends PcChat
 		{
 		Chat_I remoteChat = connectChat(ip);
 		VideoTools_I remoteVideo = connectVideo(ip);
-		new JFrameChat(remoteChat, localChat);
+
+		new JFrameChat(remoteChat, localChat, pseudo);
 		}
 
 	@Override
@@ -71,7 +72,7 @@ public class PcChat1 extends PcChat
 	protected void serverSide()
 		{
 		localChat = new SharedJtextArea();
-		localVideo = new VideoTools();
+		localVideo = VideoTools.getInstance();
 		try
 			{
 			RmiTools.shareObject(localChat, rmiUrlChat);
