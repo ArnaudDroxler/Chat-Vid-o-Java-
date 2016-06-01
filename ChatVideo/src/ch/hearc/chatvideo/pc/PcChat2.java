@@ -3,13 +3,10 @@ package ch.hearc.chatvideo.pc;
 
 import java.rmi.RemoteException;
 
-import ch.hearc.chatvideo.dialog.JFrameDialog;
-import ch.hearc.chatvideo.gui.JFrameChat;
-
 import com.bilat.tools.reseau.rmi.RmiTools;
 import com.bilat.tools.reseau.rmi.RmiURL;
 
-public abstract class PcChat implements Runnable
+public class PcChat2 extends PcChat
 	{
 
 	/*------------------------------------------------------------------*\
@@ -21,42 +18,27 @@ public abstract class PcChat implements Runnable
 	\*------------------------------------------------------------------*/
 
 	@Override
-	public void run()
-		{
-		serverSide();
-		new JFrameDialog(this);
-
-		}
-
-	/*------------------------------*\
-	|*				Set				*|
-	\*------------------------------*/
-
-	/*------------------------------*\
-	|*				Get				*|
-	\*------------------------------*/
-
-	/*------------------------------------------------------------------*\
-	|*							Methodes Private						*|
-	\*------------------------------------------------------------------*/
-
-	public void clientSide(String ip, String pseudo)
-		{
-		Chat_I remote = connect(ip);
-		work(remote);
-		}
-
-	protected void work(Chat_I remote)
-		{
-		new JFrameChat(remote);
-		}
-
 	protected Chat_I connect(String ip)
 		{
-		return shared;
+		Chat_I textarea;
+		try
+			{
+			RmiURL rmiURL = new RmiURL(PcChat2.RMI_ID, RMI_PORT);
+			int delayms = 1000;
+			int nbTentatives = 1000;
+			textarea = (Chat_I)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
+			return textarea;
+			}
+		catch (RemoteException e)
+			{
+			System.err.println("[PcChat2]: connect: erreur de connexion");
+			e.printStackTrace();
+			}
+		return null;
 
 		}
 
+	@Override
 	protected void serverSide()
 		{
 		shared = new SharedJtextArea();
@@ -75,8 +57,13 @@ public abstract class PcChat implements Runnable
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
-	//INPUT
-	protected SharedJtextArea shared;
-	protected RmiURL rmiUrl;
+	public final RmiURL rmiUrl = new RmiURL(RMI_ID, RMI_PORT);
+
+	/*------------------------------*\
+	|*			  Static			*|
+	\*------------------------------*/
+
+	public static final int RMI_PORT = RmiTools.PORT_RMI_DEFAUT;
+	public static final String RMI_ID = PcChat2.class.getName() + "MAXIME";
 
 	}

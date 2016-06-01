@@ -1,4 +1,5 @@
-package test;
+
+package Test;
 
 import javax.swing.JFrame;
 
@@ -6,10 +7,12 @@ import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
 
+public class test
+	{
 
-public class test {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException
+		{
 
 		Webcam webcam = Webcam.getDefault();
 		webcam.setViewSize(WebcamResolution.VGA.getSize());
@@ -26,5 +29,5 @@ public class test {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.pack();
 		window.setVisible(true);
+		}
 	}
-}
