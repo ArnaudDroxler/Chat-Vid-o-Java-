@@ -2,10 +2,13 @@
 package ch.hearc.chatvideo.gui;
 
 import java.awt.BorderLayout;
+import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
+import ch.hearc.chatvideo.pc.Chat_I;
 import ch.hearc.chatvideo.pc.SharedJtextArea;
 
 public class JFrameChat extends JFrame
@@ -15,9 +18,12 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(SharedJtextArea remote)
+	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat, String _pseudo)
 		{
-		this.shared = remote;
+		this.remoteChat = _remoteChat;
+		this.localChat = _localChat;
+		this.pseudo = _pseudo;
+
 		geometry();
 		control();
 		appearance();
@@ -26,6 +32,22 @@ public class JFrameChat extends JFrame
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void sendMessage(String s)
+		{
+		s = pseudo + " : " + s + "\n";
+		try
+			{
+			remoteChat.send(s);
+			localChat.append(s);
+			}
+		catch (RemoteException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -42,11 +64,13 @@ public class JFrameChat extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		bottom = new JPanelBottom();
+		//On instancier ici le textarea
+		bottom = new JPanelBottom(this);
 		right = new JPanelRight();
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
+		JPanelDecorator pDCenter = new JPanelDecorator(localChat, 4);
 
 		// Layout : Specification
 			{
@@ -57,15 +81,15 @@ public class JFrameChat extends JFrame
 			// borderLayout.setVgap(20);
 			}
 
-		add(shared, BorderLayout.CENTER);
+		add(pDCenter, BorderLayout.CENTER);
 		add(pDRight, BorderLayout.EAST);
 		add(pDBottom, BorderLayout.SOUTH);
-
 		}
 
 	private void control()
 		{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		}
 
 	private void appearance()
@@ -80,8 +104,9 @@ public class JFrameChat extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
+	private JTextArea localChat;
 	private JPanelBottom bottom;
 	private JPanelRight right;
-	private SharedJtextArea shared;
+	private Chat_I remoteChat;
+	private String pseudo;
 	}

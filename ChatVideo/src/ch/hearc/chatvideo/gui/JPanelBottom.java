@@ -1,4 +1,8 @@
+
 package ch.hearc.chatvideo.gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -12,10 +16,11 @@ public class JPanelBottom extends Box
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelBottom()
+	public JPanelBottom(JFrameChat jFrameChat)
 		{
 		super(BoxLayout.X_AXIS);
 
+		parent = jFrameChat;
 		geometry();
 		control();
 		appearance();
@@ -44,7 +49,7 @@ public class JPanelBottom extends Box
 		buttonSend = new JButton("Send");
 
 		// JComponent : add
-		add(Box.createHorizontalStrut(5));
+
 		add(inputMessage);
 		add(Box.createHorizontalStrut(5));
 		add(buttonSend);
@@ -53,12 +58,23 @@ public class JPanelBottom extends Box
 
 	private void control()
 		{
-		// rien
+		buttonSend.addActionListener(new ActionListener()
+			{
+
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+				{
+				String s = inputMessage.getText();
+				parent.sendMessage(s);
+				inputMessage.setText("");
+				}
+			});
 		}
 
 	private void appearance()
 		{
-		//Debug
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -66,8 +82,7 @@ public class JPanelBottom extends Box
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
 	private JTextField inputMessage;
 	private JButton buttonSend;
-
+	private JFrameChat parent;
 	}

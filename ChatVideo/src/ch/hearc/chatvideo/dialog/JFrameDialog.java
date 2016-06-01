@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
 import ch.hearc.chatvideo.pc.PcChat;
 
 public class JFrameDialog extends JFrame
@@ -41,7 +42,9 @@ public class JFrameDialog extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panel = new JPanelDialog(chat);
+		panel = new JPanelDialog(chat,this);
+
+		JPanelDecorator pDDialog = new JPanelDecorator(panel, 4);
 		// Layout : Specification
 			{
 			BorderLayout borderLayout = new BorderLayout();
@@ -52,18 +55,19 @@ public class JFrameDialog extends JFrame
 			}
 
 		// JComponent : add
-		add(panel);
+		add(pDDialog);
 		}
 
 	private void control()
 		{
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		}
 
 	private void appearance()
 		{
-		setSize(600, 400);
+		setSize(200, 150);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}

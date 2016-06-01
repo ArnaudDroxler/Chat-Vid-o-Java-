@@ -10,10 +10,12 @@ public class UsePcChat1
 
 	public static void main(String[] args)
 		{
+		main();
+		}
 
-		//On veut des arguments... on verra plus tard
+	public static void main()
+		{
 		new PcChat1().run();
-
 		}
 
 	/*------------------------------------------------------------------*\

@@ -1,13 +1,7 @@
 
 package ch.hearc.chatvideo.pc;
 
-import java.rmi.RemoteException;
-
 import ch.hearc.chatvideo.dialog.JFrameDialog;
-import ch.hearc.chatvideo.gui.JFrameChat;
-
-import com.bilat.tools.reseau.rmi.RmiTools;
-import com.bilat.tools.reseau.rmi.RmiURL;
 
 public abstract class PcChat implements Runnable
 	{
@@ -40,41 +34,17 @@ public abstract class PcChat implements Runnable
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
-	public void clientSide(String ip, String pseudo)
-		{
-		work();
-		}
+	public abstract void clientSide(String ip, String pseudo);
 
-	protected void work()
-		{
-		new JFrameChat(shared);
-		}
+	abstract protected Chat_I connect(String ip);
 
-	protected SharedJtextArea connect(String ip)
-		{
-		return shared;
-		}
-
-	protected void serverSide()
-		{
-		shared = new SharedJtextArea();
-		try
-			{
-			RmiTools.shareObject(shared, rmiUrl);
-			}
-		catch (RemoteException e)
-			{
-			System.err.println("[PcChat]: serverSide: instanciation textArea");
-			e.printStackTrace();
-			}
-		}
+	protected abstract void serverSide();
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
 	//INPUT
-	protected SharedJtextArea shared;
-	protected RmiURL rmiUrl;
+	protected SharedJtextArea localChat;
 
 	}
