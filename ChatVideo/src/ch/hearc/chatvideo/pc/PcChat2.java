@@ -18,15 +18,15 @@ public class PcChat2 extends PcChat
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected Chat_I connect(String ip)
+	protected SharedJtextArea connect(String ip)
 		{
-		Chat_I textarea;
+		SharedJtextArea textarea;
 		try
 			{
-			RmiURL rmiURL = new RmiURL(PcChat2.RMI_ID, RMI_PORT);
+			RmiURL rmiURL = new RmiURL(PcChat1.RMI_ID, RMI_PORT);
 			int delayms = 1000;
 			int nbTentatives = 1000;
-			textarea = (Chat_I)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
+			textarea = (SharedJtextArea)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
 			return textarea;
 			}
 		catch (RemoteException e)
@@ -35,7 +35,6 @@ public class PcChat2 extends PcChat
 			e.printStackTrace();
 			}
 		return null;
-
 		}
 
 	@Override

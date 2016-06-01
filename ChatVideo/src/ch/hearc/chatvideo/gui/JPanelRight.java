@@ -43,12 +43,12 @@ public class JPanelRight extends Box
 		// JComponent : Instanciation
 
 		buttonVideo = new JButton("Video");
-		videoCLient = new JPanelTestVideo();
+		//videoCLient = new JPanelTestVideo();
 		//videoServeur = new JPanelTestVideo();
 
 		// JComponent : add
 
-		add(videoCLient);
+		//add(videoCLient);
 		add(buttonVideo);
 		//add(videoServeur);
 		}

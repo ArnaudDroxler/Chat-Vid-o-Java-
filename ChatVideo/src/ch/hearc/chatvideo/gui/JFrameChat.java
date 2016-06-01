@@ -6,7 +6,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
-import ch.hearc.chatvideo.pc.Chat_I;
+import ch.hearc.chatvideo.pc.SharedJtextArea;
 
 public class JFrameChat extends JFrame
 	{
@@ -15,7 +15,7 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(Chat_I remote)
+	public JFrameChat(SharedJtextArea remote)
 		{
 		this.shared = remote;
 		geometry();
@@ -83,5 +83,5 @@ public class JFrameChat extends JFrame
 
 	private JPanelBottom bottom;
 	private JPanelRight right;
-	private Chat_I shared;
+	private SharedJtextArea shared;
 	}
