@@ -57,7 +57,16 @@ public class JPanelVideo extends JPanel
 				{
 				while(true)
 					{
-					repaint();
+					try
+						{
+						img = webcam.getImage();
+						repaint();
+						}
+					catch (RemoteException e)
+						{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						}
 					}
 
 				}
@@ -77,17 +86,7 @@ public class JPanelVideo extends JPanel
 
 	private void draw(Graphics2D g2d)
 		{
-		ImageIcon img;
-		try
-			{
-			img = webcam.getImage();
-			g2d.drawImage(img.getImage(), 0, 0, null);
-			}
-		catch (RemoteException e)
-			{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+		g2d.drawImage(img.getImage(), 0, 0, null);
 		}
 
 	private void geometry()
@@ -132,5 +131,6 @@ public class JPanelVideo extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
+	private ImageIcon img;
 	private VideoTools_I webcam;
 	}
