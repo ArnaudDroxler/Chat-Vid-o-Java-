@@ -1,9 +1,13 @@
 
 package ch.hearc.chatvideo.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import ch.hearc.chatvideo.pc.video.VideoTools;
 import ch.hearc.chatvideo.pc.video.VideoTools_I;
@@ -19,8 +23,8 @@ public class JPanelRight extends Box
 	public JPanelRight(VideoTools _localVideo, VideoTools_I _remoteVideo)
 		{
 		super(BoxLayout.Y_AXIS);
-		localVideo = new JPanelVideo(_localVideo);
-		remoteVideo = new JPanelVideo(_remoteVideo);
+		localVideo = _localVideo;
+		remoteVideo = _remoteVideo;
 		geometry();
 		control();
 		appearance();
@@ -45,17 +49,43 @@ public class JPanelRight extends Box
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		buttonVideo = new JButton("Video");
+		buttonConnect = new JButton("Video");
+		buttonDisconnet = new JButton("Disconnect");
+		panelLocalVideo = new JPanelVideo(localVideo);
+		panelRemoteVideo = new JPanelVideo(remoteVideo);
 
 		// JComponent : add
-		add(buttonVideo);
-		add(remoteVideo);
-		add(localVideo);
+		add(buttonConnect);
 		}
 
 	private void control()
 		{
-		// rien
+		buttonConnect.addActionListener(new ActionListener()
+			{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+				{
+				add(panelRemoteVideo);
+				add(panelLocalVideo);
+				remove(buttonConnect);
+				add(buttonDisconnet);
+				}
+			});
+
+		buttonDisconnet.addActionListener(new ActionListener()
+			{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+				{
+				remove(panelLocalVideo);
+				remove(panelRemoteVideo);
+				remove(buttonDisconnet);
+				add(buttonConnect);
+
+				}
+			});
 		}
 
 	private void appearance()
@@ -68,7 +98,10 @@ public class JPanelRight extends Box
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private JButton buttonVideo;
-	private JPanelVideo localVideo;
-	private JPanelVideo remoteVideo;
+	private JButton buttonConnect;
+	private JButton buttonDisconnet;
+	private JPanel panelLocalVideo;
+	private JPanel panelRemoteVideo;
+	private VideoTools localVideo;
+	private VideoTools_I remoteVideo;
 	}
