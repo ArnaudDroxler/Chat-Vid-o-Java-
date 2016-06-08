@@ -35,7 +35,7 @@ public class VideoTools implements VideoTools_I
 		BufferedImage image = webcam.getImage();
 		if (image != null)
 			{
-			return new ImageIcon(webcam.getImage());
+			return new ImageIcon(image);
 			}
 		else
 			{

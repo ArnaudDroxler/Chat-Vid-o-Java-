@@ -70,7 +70,7 @@ public class JFrameChat extends JFrame
 		// JComponent : Instanciation
 		//On instancier ici le textarea
 		bottom = new JPanelBottom(this);
-		right = new JPanelRight(localVideo,remoteVideo);
+		right = new JPanelRight(localVideo,remoteVideo,this);
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
@@ -102,6 +102,7 @@ public class JFrameChat extends JFrame
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}
+
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|

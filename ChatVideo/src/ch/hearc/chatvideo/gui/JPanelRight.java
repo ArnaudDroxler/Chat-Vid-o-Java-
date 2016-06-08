@@ -20,9 +20,10 @@ public class JPanelRight extends Box
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelRight(VideoTools _localVideo, VideoTools_I _remoteVideo)
+	public JPanelRight(VideoTools _localVideo, VideoTools_I _remoteVideo, JFrameChat _parent)
 		{
 		super(BoxLayout.Y_AXIS);
+		parent = _parent;
 		localVideo = _localVideo;
 		remoteVideo = _remoteVideo;
 		geometry();
@@ -70,6 +71,8 @@ public class JPanelRight extends Box
 				add(panelLocalVideo);
 				remove(buttonConnect);
 				add(buttonDisconnet);
+				parent.setLocation(0, 0);
+				parent.setSize(1200, 800);
 				}
 			});
 
@@ -83,7 +86,7 @@ public class JPanelRight extends Box
 				remove(panelRemoteVideo);
 				remove(buttonDisconnet);
 				add(buttonConnect);
-
+				parent.setSize(600, 400);
 				}
 			});
 		}
@@ -104,4 +107,5 @@ public class JPanelRight extends Box
 	private JPanel panelRemoteVideo;
 	private VideoTools localVideo;
 	private VideoTools_I remoteVideo;
+	private JFrameChat parent;
 	}
