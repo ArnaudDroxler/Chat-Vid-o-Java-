@@ -24,6 +24,7 @@ public class JPanelVideo extends JPanel
 
 	public JPanelVideo(VideoTools_I video)
 		{
+		img = new ImageIcon();
 		webcam = video;
 		geometry();
 		control();
