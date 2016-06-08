@@ -60,8 +60,6 @@ public class JPanelBottom extends Box
 		{
 		buttonSend.addActionListener(new ActionListener()
 			{
-
-
 			@Override
 			public void actionPerformed(ActionEvent e)
 				{

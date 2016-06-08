@@ -1,6 +1,8 @@
 
 package ch.hearc.chatvideo.pc.video;
 
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 import com.github.sarxos.webcam.Webcam;
@@ -30,8 +32,16 @@ public class VideoTools implements VideoTools_I
 	@Override
 	public ImageIcon getImage()
 		{
-		return new ImageIcon(webcam.getImage());
-		//return webcam.getImage();
+		BufferedImage image = webcam.getImage();
+		if (image != null)
+			{
+			return new ImageIcon(webcam.getImage());
+			}
+		else
+			{
+			return new ImageIcon("webcame.png");
+			}
+
 		}
 
 	/*------------------------------------------------------------------*\
