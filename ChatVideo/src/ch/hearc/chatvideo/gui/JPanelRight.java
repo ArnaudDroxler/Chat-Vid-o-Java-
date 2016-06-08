@@ -45,7 +45,6 @@ public class JPanelRight extends Box
 	private void geometry()
 		{
 		// JComponent : Instanciation
-
 		buttonVideo = new JButton("Video");
 
 		// JComponent : add

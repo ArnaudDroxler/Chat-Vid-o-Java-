@@ -8,9 +8,9 @@ import java.awt.Graphics2D;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.rmi.RemoteException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import ch.hearc.chatvideo.pc.video.VideoTools_I;
@@ -77,11 +77,11 @@ public class JPanelVideo extends JPanel
 
 	private void draw(Graphics2D g2d)
 		{
-		BufferedImage img;
+		ImageIcon img;
 		try
 			{
 			img = webcam.getImage();
-			g2d.drawImage(img, 0, 0, null);
+			g2d.drawImage(img.getImage(), 0, 0, null);
 			}
 		catch (RemoteException e)
 			{
