@@ -5,7 +5,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
-import ch.hearc.chatvideo.testvideo.JPanelTestVideo;
+import ch.hearc.chatvideo.pc.video.VideoTools;
+import ch.hearc.chatvideo.pc.video.VideoTools_I;
+import ch.hearc.chatvideo.testvideo.JPanelVideo;
 
 public class JPanelRight extends Box
 	{
@@ -14,9 +16,11 @@ public class JPanelRight extends Box
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelRight()
+	public JPanelRight(VideoTools _localVideo, VideoTools_I _remoteVideo)
 		{
 		super(BoxLayout.Y_AXIS);
+		localVideo = new JPanelVideo(_localVideo);
+		remoteVideo = new JPanelVideo(_remoteVideo);
 		geometry();
 		control();
 		appearance();
@@ -43,14 +47,11 @@ public class JPanelRight extends Box
 		// JComponent : Instanciation
 
 		buttonVideo = new JButton("Video");
-		//videoCLient = new JPanelTestVideo();
-		//videoServeur = new JPanelTestVideo();
 
 		// JComponent : add
-
-		//add(videoCLient);
 		add(buttonVideo);
-		//add(videoServeur);
+		add(remoteVideo);
+		add(localVideo);
 		}
 
 	private void control()
@@ -69,6 +70,6 @@ public class JPanelRight extends Box
 
 	// Tools
 	private JButton buttonVideo;
-	private JPanelTestVideo videoCLient;
-	private JPanelTestVideo videoServeur;
+	private JPanelVideo localVideo;
+	private JPanelVideo remoteVideo;
 	}

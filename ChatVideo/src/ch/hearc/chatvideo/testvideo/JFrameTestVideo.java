@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import ch.hearc.chatvideo.pc.video.VideoTools;
+
 public class JFrameTestVideo extends JFrame
 	{
 
@@ -38,7 +40,7 @@ public class JFrameTestVideo extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panel = new JPanelTestVideo();
+		panel = new JPanelVideo(video);
 		// Layout : Specification
 			{
 			BorderLayout borderLayout = new BorderLayout();
@@ -69,6 +71,6 @@ public class JFrameTestVideo extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	JPanelTestVideo panel;
-
+	private JPanelVideo panel;
+	private VideoTools video = VideoTools.getInstance();
 	}

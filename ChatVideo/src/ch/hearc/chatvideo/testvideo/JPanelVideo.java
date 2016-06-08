@@ -9,24 +9,22 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.rmi.RemoteException;
 
 import javax.swing.JPanel;
 
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
+import ch.hearc.chatvideo.pc.video.VideoTools_I;
 
-public class JPanelTestVideo extends JPanel
+public class JPanelVideo extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelTestVideo()
+	public JPanelVideo(VideoTools_I video)
 		{
-		webcam = Webcam.getDefault();
-		webcam.setViewSize(WebcamResolution.VGA.getSize());
-		webcam.open();
+		webcam = video;
 		geometry();
 		control();
 		appearance();
@@ -59,10 +57,7 @@ public class JPanelTestVideo extends JPanel
 				{
 				while(true)
 					{
-					if (webcam.isOpen())
-						{
-						repaint();
-						}
+					repaint();
 					}
 
 				}
@@ -82,10 +77,16 @@ public class JPanelTestVideo extends JPanel
 
 	private void draw(Graphics2D g2d)
 		{
-		if (webcam.isImageNew())
+		BufferedImage img;
+		try
 			{
-			BufferedImage img = webcam.getImage();
+			img = webcam.getImage();
 			g2d.drawImage(img, 0, 0, null);
+			}
+		catch (RemoteException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			}
 		}
 
@@ -131,5 +132,5 @@ public class JPanelTestVideo extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private Webcam webcam;
+	private VideoTools_I webcam;
 	}

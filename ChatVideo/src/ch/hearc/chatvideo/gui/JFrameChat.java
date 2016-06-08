@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
 import ch.hearc.chatvideo.pc.chat.Chat_I;
 import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
+import ch.hearc.chatvideo.pc.video.VideoTools;
+import ch.hearc.chatvideo.pc.video.VideoTools_I;
 
 public class JFrameChat extends JFrame
 	{
@@ -18,11 +20,13 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat, String _pseudo)
+	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat, VideoTools_I _remoteVideo, VideoTools _localVideo, String _pseudo)
 		{
 		this.remoteChat = _remoteChat;
 		this.localChat = _localChat;
 		this.pseudo = _pseudo;
+		this.remoteVideo = _remoteVideo;
+		this.localVideo = _localVideo;
 
 		geometry();
 		control();
@@ -66,7 +70,7 @@ public class JFrameChat extends JFrame
 		// JComponent : Instanciation
 		//On instancier ici le textarea
 		bottom = new JPanelBottom(this);
-		right = new JPanelRight();
+		right = new JPanelRight(localVideo,remoteVideo);
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
@@ -104,9 +108,11 @@ public class JFrameChat extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private JTextArea localChat;
 	private JPanelBottom bottom;
 	private JPanelRight right;
+	private JTextArea localChat;
 	private Chat_I remoteChat;
+	private VideoTools localVideo;
+	private VideoTools_I remoteVideo;
 	private String pseudo;
 	}

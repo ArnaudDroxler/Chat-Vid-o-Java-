@@ -30,7 +30,7 @@ public class PcChat1 extends PcChat
 			ip = InetAddress.getByName(_ip);
 			Chat_I remoteChat = connectChat(ip);
 			VideoTools_I remoteVideo = connectVideo(ip);
-			new JFrameChat(remoteChat, localChat, pseudo);
+			new JFrameChat(remoteChat, localChat,remoteVideo,localVideo, pseudo);
 			}
 		catch (UnknownHostException e)
 			{
@@ -48,7 +48,7 @@ public class PcChat1 extends PcChat
 
 		try
 			{
-			RmiURL rmiURL = new RmiURL(PcChat2.RMI_ID_VIDEO, RMI_PORT);
+			RmiURL rmiURL = new RmiURL(PcChat2.RMI_ID_VIDEO,ip, RMI_PORT);
 			int delayms = 1000;
 			int nbTentatives = 15;
 			remoteVideo = (VideoTools_I)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayms, nbTentatives);
