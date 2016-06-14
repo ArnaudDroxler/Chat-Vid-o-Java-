@@ -101,11 +101,18 @@ public class JFrameChat extends JFrame
 		this.addWindowListener(new WindowAdapter()
 			{
 
-
 			@Override
 			public void windowClosing(WindowEvent e)
 				{
-				sendMessage("Votre interlocuteur s'est déconnecté.");
+				try
+					{
+					remoteChat.exit();
+					}
+				catch (RemoteException e1)
+					{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					}
 				new JFrameDialog(chat);
 				}
 
