@@ -51,7 +51,7 @@ public class JFrameChat extends JFrame
 			}
 		catch (RemoteException e)
 			{
-			// TODO Auto-generated catch block
+			localChat.append("Erreur de connexion");
 			e.printStackTrace();
 			}
 

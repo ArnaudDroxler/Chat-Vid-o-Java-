@@ -4,6 +4,7 @@ package ch.hearc.chatvideo.dialog;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.prefs.Preferences;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -81,10 +82,12 @@ public class JPanelDialog extends Box
 			@Override
 			public void actionPerformed(ActionEvent e)
 				{
+				savePreferences();
 				chat.clientSide(inputIp.getText(), inputPseudo.getText());
 				parent.setVisible(false);
 				}
 			});
+
 		}
 
 	private void appearance()
@@ -97,8 +100,23 @@ public class JPanelDialog extends Box
 		inputIp.setMaximumSize(new Dimension(100, 26));
 		inputIp.setMinimumSize(new Dimension(100, 26));
 
-
+		loadPreferences();
 		}
+
+	private void loadPreferences()
+		{
+		String pseudo = PREFERENCES.get("pseudo", "Moi");
+		String ip = PREFERENCES.get("ip", "127.0.0.1");
+		inputPseudo.setText(pseudo);
+		inputIp.setText(ip);
+		}
+
+	public void savePreferences()
+		{
+		PREFERENCES.put("pseudo", inputPseudo.getText());
+		PREFERENCES.put("ip", inputIp.getText());
+		}
+
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
@@ -113,4 +131,6 @@ public class JPanelDialog extends Box
 	private JButton connect;
 	private PcChat chat;
 	private JFrameDialog parent;
+	private static final Preferences PREFERENCES = Preferences.userNodeForPackage(JPanelDialog.class);
+
 	}
