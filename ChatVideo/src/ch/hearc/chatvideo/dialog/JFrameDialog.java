@@ -60,9 +60,7 @@ public class JFrameDialog extends JFrame
 
 	private void control()
 		{
-
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
 		}
 
 	private void appearance()
@@ -77,7 +75,7 @@ public class JFrameDialog extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	JPanelDialog panel;
-	PcChat chat;
+	private JPanelDialog panel;
+	private PcChat chat;
 
 	}
