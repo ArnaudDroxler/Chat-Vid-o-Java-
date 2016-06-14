@@ -55,8 +55,12 @@ public class JPanelRight extends Box
 		panelLocalVideo = new JPanelVideo(localVideo);
 		panelRemoteVideo = new JPanelVideo(remoteVideo);
 
+		box = Box.createHorizontalBox();
 		// JComponent : add
+		add(Box.createVerticalGlue());
 		add(buttonConnect);
+		add(Box.createVerticalGlue());
+
 		}
 
 	private void control()
@@ -67,10 +71,14 @@ public class JPanelRight extends Box
 			@Override
 			public void actionPerformed(ActionEvent e)
 				{
+				removeAll();
+				add(Box.createVerticalGlue());
 				add(panelRemoteVideo);
 				add(panelLocalVideo);
-				remove(buttonConnect);
-				add(buttonDisconnet);
+				add(Box.createVerticalStrut(5));
+				box.add(buttonDisconnet);
+				add(box);
+				add(Box.createVerticalGlue());
 				parent.setLocation(0, 0);
 				parent.setSize(1200, 800);
 				}
@@ -82,10 +90,10 @@ public class JPanelRight extends Box
 			@Override
 			public void actionPerformed(ActionEvent e)
 				{
-				remove(panelLocalVideo);
-				remove(panelRemoteVideo);
-				remove(buttonDisconnet);
+				removeAll();
+				add(Box.createVerticalGlue());
 				add(buttonConnect);
+				add(Box.createVerticalGlue());
 				parent.setSize(600, 400);
 				}
 			});
@@ -107,5 +115,6 @@ public class JPanelRight extends Box
 	private JPanel panelRemoteVideo;
 	private VideoTools localVideo;
 	private VideoTools_I remoteVideo;
+	private Box box;
 	private JFrameChat parent;
 	}

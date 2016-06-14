@@ -50,7 +50,7 @@ public class JPanelDialog extends Box
 		{
 		// JComponent : Instanciation
 		labelIp = new JLabel("IP : ");
-		inputIp = new JTextField("127.0.0.1");
+		inputIp = new JTextField("157.26.88.145");
 		labelPseudo = new JLabel("Pseudo : ");
 		inputPseudo = new JTextField("Moi");
 		connect = new JButton("Connect");
