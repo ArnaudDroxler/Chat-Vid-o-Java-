@@ -2,6 +2,10 @@
 package ch.hearc.chatvideo.gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
@@ -70,7 +74,7 @@ public class JFrameChat extends JFrame
 		// JComponent : Instanciation
 		//On instancier ici le textarea
 		bottom = new JPanelBottom(this);
-		right = new JPanelRight(localVideo,remoteVideo,this);
+		right = new JPanelRight(localVideo, remoteVideo, this);
 
 		JPanelDecorator pDBottom = new JPanelDecorator(bottom, 4);
 		JPanelDecorator pDRight = new JPanelDecorator(right, 4);
@@ -92,8 +96,32 @@ public class JFrameChat extends JFrame
 
 	private void control()
 		{
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addKeyListener(new KeyAdapter()
+			{
 
+			@Override
+			public void keyPressed(KeyEvent e)
+				{
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+					{
+					System.out.println("Key_pressed");
+					bottom.sendMessage();
+					}
+				}
+			});
+
+		this.addWindowListener(new WindowAdapter()
+			{
+
+			@Override
+			public void windowClosing(WindowEvent e)
+				{
+				sendMessage("Votre interlocuteur s'est déconnecté.");
+				System.exit(0); // 0 normal, -1 anormal
+				}
+
+			});
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		}
 
 	private void appearance()
@@ -102,7 +130,6 @@ public class JFrameChat extends JFrame
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}
-
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|

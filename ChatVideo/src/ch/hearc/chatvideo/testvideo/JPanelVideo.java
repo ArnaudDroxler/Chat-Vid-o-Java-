@@ -87,7 +87,8 @@ public class JPanelVideo extends JPanel
 
 	private void draw(Graphics2D g2d)
 		{
-		g2d.drawImage(img.getImage(), 0, 0, null);
+		//	g2d.drawImage(img.getImage(), 0, 0, null);
+		g2d.drawImage(img.getImage(), this.getWidth(), 0, -this.getWidth(), this.getHeight(), null);
 		}
 
 	private void geometry()

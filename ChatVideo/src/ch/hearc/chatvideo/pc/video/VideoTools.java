@@ -33,6 +33,7 @@ public class VideoTools implements VideoTools_I
 	public ImageIcon getImage()
 		{
 		BufferedImage image = webcam.getImage();
+
 		if (image != null)
 			{
 			return new ImageIcon(image);

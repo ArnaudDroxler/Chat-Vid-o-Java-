@@ -60,14 +60,20 @@ public class JPanelBottom extends Box
 		{
 		buttonSend.addActionListener(new ActionListener()
 			{
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 				{
-				String s = inputMessage.getText();
-				parent.sendMessage(s);
-				inputMessage.setText("");
+				sendMessage();
 				}
 			});
+		}
+
+	public void sendMessage()
+		{
+		String s = inputMessage.getText();
+		parent.sendMessage(s);
+		inputMessage.setText("");
 		}
 
 	private void appearance()
