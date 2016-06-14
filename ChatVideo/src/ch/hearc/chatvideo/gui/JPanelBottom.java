@@ -3,6 +3,8 @@ package ch.hearc.chatvideo.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -24,6 +26,7 @@ public class JPanelBottom extends Box
 		geometry();
 		control();
 		appearance();
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -61,10 +64,25 @@ public class JPanelBottom extends Box
 		buttonSend.addActionListener(new ActionListener()
 			{
 
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 				{
 				sendMessage();
+				}
+			});
+
+		inputMessage.addKeyListener(new KeyAdapter()
+			{
+
+
+			@Override
+			public void keyPressed(KeyEvent e)
+				{
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+					{
+					sendMessage();
+					}
 				}
 			});
 		}
@@ -89,4 +107,5 @@ public class JPanelBottom extends Box
 	private JTextField inputMessage;
 	private JButton buttonSend;
 	private JFrameChat parent;
+
 	}
