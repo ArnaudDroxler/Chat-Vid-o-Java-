@@ -30,7 +30,7 @@ public class PcChat2 extends PcChat
 			ip = InetAddress.getByName(_ip);
 			Chat_I remoteChat = connectChat(ip);
 			VideoTools_I remoteVideo = connectVideo(ip);
-			new JFrameChat(remoteChat, localChat, remoteVideo, localVideo, pseudo);
+			new JFrameChat(this, remoteChat, localChat, remoteVideo, localVideo, pseudo);
 			}
 		catch (UnknownHostException e)
 			{

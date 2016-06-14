@@ -9,7 +9,9 @@ import java.rmi.RemoteException;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
+import ch.hearc.chatvideo.dialog.JFrameDialog;
 import ch.hearc.chatvideo.gui.tools.JPanelDecorator;
+import ch.hearc.chatvideo.pc.PcChat;
 import ch.hearc.chatvideo.pc.chat.Chat_I;
 import ch.hearc.chatvideo.pc.chat.SharedJtextArea;
 import ch.hearc.chatvideo.pc.video.VideoTools;
@@ -22,8 +24,9 @@ public class JFrameChat extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameChat(Chat_I _remoteChat, SharedJtextArea _localChat, VideoTools_I _remoteVideo, VideoTools _localVideo, String _pseudo)
+	public JFrameChat(PcChat pcChat, Chat_I _remoteChat, SharedJtextArea _localChat, VideoTools_I _remoteVideo, VideoTools _localVideo, String _pseudo)
 		{
+		chat = pcChat;
 		this.remoteChat = _remoteChat;
 		this.localChat = _localChat;
 		this.pseudo = _pseudo;
@@ -103,17 +106,10 @@ public class JFrameChat extends JFrame
 			public void windowClosing(WindowEvent e)
 				{
 				sendMessage("Votre interlocuteur s'est déconnecté.");
-				System.exit(0); // 0 normal, -1 anormal
-				}
-
-			@Override
-			public void windowGainedFocus(WindowEvent e)
-				{
-				bottom.focus();
+				new JFrameDialog(chat);
 				}
 
 			});
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		}
 
@@ -136,4 +132,5 @@ public class JFrameChat extends JFrame
 	private VideoTools localVideo;
 	private VideoTools_I remoteVideo;
 	private String pseudo;
+	private PcChat chat;
 	}
