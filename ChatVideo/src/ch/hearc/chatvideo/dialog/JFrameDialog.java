@@ -75,7 +75,7 @@ public class JFrameDialog extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	JPanelDialog panel;
-	PcChat chat;
+	private JPanelDialog panel;
+	private PcChat chat;
 
 	}

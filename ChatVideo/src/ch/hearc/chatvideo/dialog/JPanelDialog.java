@@ -71,7 +71,6 @@ public class JPanelDialog extends Box
 		add(Box.createVerticalStrut(4));
 		add(connect);
 
-
 		}
 
 	private void control()
@@ -86,6 +85,7 @@ public class JPanelDialog extends Box
 				chat.clientSide(inputIp.getText(), inputPseudo.getText());
 				parent.setVisible(false);
 				}
+
 			});
 
 		}
@@ -111,7 +111,7 @@ public class JPanelDialog extends Box
 		inputIp.setText(ip);
 		}
 
-	public void savePreferences()
+	private void savePreferences()
 		{
 		PREFERENCES.put("pseudo", inputPseudo.getText());
 		PREFERENCES.put("ip", inputIp.getText());
@@ -131,6 +131,10 @@ public class JPanelDialog extends Box
 	private JButton connect;
 	private PcChat chat;
 	private JFrameDialog parent;
-	private static final Preferences PREFERENCES = Preferences.userNodeForPackage(JPanelDialog.class);
 
+	/*------------------------------*\
+	|*			  Static			*|
+	\*------------------------------*/
+
+	private static final Preferences PREFERENCES = Preferences.userNodeForPackage(JPanelDialog.class);
 	}

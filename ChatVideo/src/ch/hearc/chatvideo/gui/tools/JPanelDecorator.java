@@ -61,10 +61,6 @@ public class JPanelDecorator extends JPanel
 		JPanel panel = new JPanel();
 		Dimension dim = new Dimension(marge, marge);
 		panel.setPreferredSize(dim);
-		//debug
-			{
-			//panel.setBackground(Color.BLACK);
-			}
 
 		return panel;
 		}

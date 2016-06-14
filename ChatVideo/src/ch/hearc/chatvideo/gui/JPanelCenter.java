@@ -73,5 +73,4 @@ public class JPanelCenter extends JPanel
 
 	//Input
 	private JTextArea textArea;
-
 	}
